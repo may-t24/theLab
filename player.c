@@ -25,11 +25,34 @@ void drawPlayer(){
 
 Player moveRight(Player p1){
 	mvaddch(p1.y,p1.x,' ');
-	mvaddch(p1.y,p1.x,p1.symbol);
+	mvaddch(p1.y,p1.x +1,p1.symbol);
 	p1.x+=1;
 	refresh();
 	return p1;
 }
 
-//Add move up and down and left
+Player moveLeft(Player p1){
+        mvaddch(p1.y,p1.x,' ');
+        mvaddch(p1.y,p1.x -1,p1.symbol);
+        p1.x-=1;
+        refresh();
+        return p1;
+}
+//Going up is NEGATIVE in ncurse
+Player moveUp(Player p1){
+        mvaddch(p1.y,p1.x,' ');
+        mvaddch(p1.y-1,p1.x,p1.symbol);
+        p1.y-=1;
+        refresh();
+        return p1;
+}
+
+Player moveDown(Player p1){
+        mvaddch(p1.y,p1.x,' ');
+        mvaddch(p1.y+1,p1.x,p1.symbol);
+        p1.y+=1;
+        refresh();
+        return p1;
+}
+
 
