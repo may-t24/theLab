@@ -1,0 +1,35 @@
+//Group 2 - Assignment 2
+#include <stdio.h>
+#include <curses.h>
+#include <unistd.h>
+
+/*Struct of the player symbol and coords */
+typedef struct{
+        int x;
+	int y;
+	char symbol;
+}Player;
+
+Player createPlayer(){
+	Player p1;
+	p1.x = 10;
+	p1.y = 10;
+	p1.symbol = '@';
+	return p1;
+}
+
+void drawPlayer(){
+	mvaddch(p1.y,p1.s,p1.symbol);
+	refresh();
+}
+
+Player moveRight(Player p1){
+	mvaddch(p1.y,p1.x,' ');
+	mvaddch(p1.y,p1.x,p1.symbol);
+	p1.x+=1;
+	refresh();
+	return p1;
+}
+
+//Add move up and down and left
+
