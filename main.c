@@ -22,9 +22,22 @@ int main(){
 	refresh();
         wborder(w,'|','|','-','-','+','+','+','+');
 	wfresh(w);
-	start_art();
-	level1();
-	level2();
+	//In each function, a return of one signifies that the user quits
+	if (start_art() == 1){
+		getch();
+		endwin();
+		return 1;
+	}
+	if (level1() == 1){
+		getch();
+		endwin();
+		return 1;
+	} 
+	if (level2() == 1 ){
+		getch();
+		endwin();
+		return 1;
+	}
 	end_art();
 	// Game is ended
 	getch();
