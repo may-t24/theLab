@@ -68,8 +68,10 @@ void level_template(){
 			if(end_art() = 1){
 				return 1;
 			}
+			refresh_level();
                 } else if (input 'p'){
 			pause_art();
+			refresh_level();
 		//Checks player interaction
 		} else if (input 'i'){
 			//NPC check can combine all the +1 checks into one statement since it does not need to modify the play field
@@ -82,14 +84,38 @@ void level_template(){
                         }
                         if(mvinch(p1.y,p1.x+1) == '0'){
 				mvaddch(p1.y,p1.x+1,' ');
+				for(int i = 0; i < (sizeof(key_location)/sizeof(key_location[0]); i++){
+					if(p1.y == key_location[i][1] && p1.x+1 == key_location[i][0]){
+						key_location[i][0] == -1;
+						key_location[i][1] == -1;
+					}
+				}
 				key_count-=1;
 			} else if (mvinch(p1.y,p1.x-1) == '0'){
                                 mvaddch(p1.y,p1.x-1,' ');
+                                for(int i = 0; i < (sizeof(key_location)/sizeof(key_location[0]); i++){
+                                        if(p1.y == key_location[i][1] && p1.x-1 == key_location[i][0]){
+                                                key_location[i][0] == -1;
+                                                key_location[i][1] == -1;
+                                        }
+                                }
 				key_count-=1;
 			} else if (mvinch(p1.y-1,p1.) == '0'){
+                                for(int i = 0; i < (sizeof(key_location)/sizeof(key_location[0]); i++){
+                                        if(p1.y-1 == key_location[i][1] && p1.x == key_location[i][0]){
+                                                key_location[i][0] == -1;
+                                                key_location[i][1] == -1;
+                                        }
+                                }
                                 mvaddch(p1.y-1,p1.,' ');
 				key_count-=1;
 			} else if (mvinch(p1.y+1,p1.x) == '0'){
+                                for(int i = 0; i < (sizeof(key_location)/sizeof(key_location[0]); i++){
+                                        if(p1.y+1 == key_location[i][1] && p1.x == key_location[i][0]){
+                                                key_location[i][0] == -1;
+                                                key_location[i][1] == -1;
+                                        }
+                                }
                                 mvaddch(p1.y+1,p1.x,' ');
 				key_count-=1;
 			}
@@ -108,9 +134,10 @@ void refresh_level(){
 	drawPlayer(p1);
 	drawPlayer(NPC);
 	// Draws the uncollected keys
-	for(int i = 0; i <= key_location; i++){
-		if(key_location[i][0] != NULL && key_location[i][1] != NULL){
+	for(int i = 0; i < (sizeof(key_location)/sizeof(key_location[0]); i++){
+		if(key_location[i][0] != -1 && key_location[i][1] != -1){
 			mvaddch(key_location[i][0],key_location[1],'0');
 		}
 	}
+	refresh();
 }
