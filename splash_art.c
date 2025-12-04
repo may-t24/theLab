@@ -8,19 +8,20 @@ int start_art(){
 
 initscr();
 
-addstr("\t---------   |    |   -------        |             /\       |------  \n");
-addstr("\t    |       |    |   |              |            /  \      |      | \n");
-addstr("\t    |       |----|   |-----         |           /    \     |------  \n");
-addstr("\t    |       |    |   |              |          /------\    |      | \n");
-addstr("\t    |       |    |   |------        |------   /        \   |------  \n\n\n");
+addstr("                     ---------   |    |   -------        |             /\\       |------  \n");
+addstr("                         |       |    |   |              |            /  \\      |      | \n");
+addstr("                         |       |----|   |-----         |           /    \\     |------  \n");
+addstr("                         |       |    |   |              |          /------\\    |      | \n");
+addstr("                         |       |    |   |------        |------   /        \\   |------  \n\n\n");
 
-addstr("\t\tPress any key to start game.\n");
-addstr("\t\tPress q to quit.");
+addstr("                                          Press any key to start game.\n");
+addstr("                                          Press q to quit.");
 
 refresh();
 
 //If user input is "q", return 1 so that the quit screen can be called
-if (getch() == "q") {
+char key = getch();
+if (key == 113 || key == 81) {
 	return 1;
 }
 
@@ -33,13 +34,13 @@ int end_art(){
 
 initscr();
 
-addstr("\t\     /   /------\   |      |        |      |   -------   |\    |\n");
-addstr("\t \   /    |      |   |      |        |      |      |      | \   |\n");
-addstr("\t  \ /     |      |   |      |        |  /\  |      |      |  \  |\n");
-addstr("\t   |      |      |   |      |        | /  \ |      |      |   \ |\n");
-addstr("\t   |      \------/   \------/        |/    \|   -------   |    \|\n\n\n");
+addstr("                     \\     /   /------\\   |      |        |      |   -------   |\\    |\n");
+addstr("                      \\   /    |      |   |      |        |      |      |      | \\   |\n");
+addstr("                       \\ /     |      |   |      |        |  /\\  |      |      |  \\  |\n");
+addstr("                        |      |      |   |      |        | /  \\ |      |      |   \\ |\n");
+addstr("                        |      \\------/   \\------/        |/    \\|   -------   |    \\|\n\n\n");
 
-addstr("\t\tPress any key to quit.");
+addstr("                                          Press any key to quit.");
 
 refresh();
 
@@ -53,17 +54,18 @@ int pause_art(){
 
 initscr();
 
-addstr("\t|-----        /\       |     |   -------   |------   |-----\\n");
-addstr("\t|     |      /  \      |     |   |         |         |     |\n");
-addstr("\t|-----      /    \     |     |   -------   |-----    |     |\n");
-addstr("\t|          /------\    |     |         |   |         |     |\n");
-addstr("\t|         /        \   \-----/   -------   |------   |-----/\n\n\n");
+addstr("                     |-----        /\\       |     |   -------   |------   |-----\\\n");
+addstr("                     |     |      /  \\      |     |   |         |         |     |\n");
+addstr("                     |-----      /    \\     |     |   -------   |-----    |     |\n");
+addstr("                     |          /------\\    |     |         |   |         |     |\n");
+addstr("                     |         /        \\   \\-----/   -------   |------   |-----/\n\n\n");
 
-addstr("\t\tPress any key to continue.");
+addstr("                                          Press any key to continue.");
 
-refresh():
+refresh();
 
-if (getch() == "q") {
+char key = getch();
+if (key == 113 || key == 81) {
 	return 1;
 }
 
@@ -73,17 +75,18 @@ return 0;
 
 int quit_art(){
 
-intiscr();
+initscr();
 
-addstr("\t\t\t|--------------------------------|\n");
-addstr("\t\t\t| Are you sure you want to quit? |\n");
-addstr("\t\t\t|                                |\n");
-addstr("\t\t\t|             y/n                |\n");
-addstr("\t\t\t|--------------------------------|\n");
+addstr("                                          |--------------------------------|\n");
+addstr("                                          |                                |\n");
+addstr("                                          |     Press q again to quit.     |\n");
+addstr("                                          |                                |\n");
+addstr("                                          |--------------------------------|\n");
 
 refresh();
 
-if (getch() == "q") {
+char key = getch();
+if (key == 113 || key == 81) {
 	return 1;
 }
 
