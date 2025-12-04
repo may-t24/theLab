@@ -64,19 +64,24 @@ void level_template(){
                         p = movePlayerDown(p1);
 			sleep(5);
                         } 
-                } else if (input 'q'){
+                } else if (input == 'q'){
 			if(end_art() = 1){
 				return 1;
 			}
 			refresh_level();
-                } else if (input 'p'){
+                } else if (input == 'p'){
 			pause_art();
 			refresh_level();
 		//Checks player interaction
-		} else if (input 'i'){
+		} else if (input == 'i'){
 			//NPC check can combine all the +1 checks into one statement since it does not need to modify the play field
 			if(mvinch(p1.y,p1.x+1) == '?' || mvinch(p1.y,p1.x-1) == '?' || mvinch(p1.y-1,p1.) == '?' || mvinch(p1.y+1,p1.x) == '?'){
 				//print npc_dialogue in ncurses
+				mvprintw(15,40,npc_dialogue);
+				//Pressing any button closes dialogue
+				input = getch();
+				clear();
+				refresh();
 			}
 			//Exit Reached.  Going to next level
                         if(mvinch(p1.y,p1.x+1) == '#' || mvinch(p1.y,p1.x-1) == '#' || mvinch(p1.y-1,p1.) == '#' || mvinch(p1.y+1,p1.x) == '#'){
@@ -129,7 +134,7 @@ void level_template(){
 
 void refresh_level(){
 	// Copy the level layout here
-
+	
 	//Refresh the player and npc
 	drawPlayer(p1);
 	drawPlayer(NPC);
