@@ -9,14 +9,18 @@ void level_template(){
         char h = '|';
 	//represents the object the player needs to collect.  Replace 0 with the value for the level
         int key_count =0;
+	//Tracks the location of each key.  Second array is the coord as (x,y)
+	int key_location[key_count][2];
 	//NPC not a struct since its fairly similar to Player struct without much differences
 	Player NPC;
 	NPC.createPlayer(10,15);
+	drawPlayer(NPC);
 	//The npcs dialogue when you interact with him.  Replace example text with your own text
 	char npc_dialogue[] ="Hello Player";
 	time_t npc_timer1 = time();
 	time_t npc_timer2 = time();
         //Adds actual walls since border is visual only
+	//Put your level layout here
         mvprintw(25,30,"%c",h);
         mvprintw(26,30,"%c",h);
         mvprintw(27,30,"%c",h);
@@ -26,7 +30,7 @@ void level_template(){
         while(1){
 		//Keep track of where = is in the maze.  Replace 0,0 with the coords of =
 		if key_count = 0{
-			mvaddch("0","0");
+			mvaddch('0','0',' ');
 		}
 		/* if timer1 is 3 seconds, NPC move right, 
 		if timer2 is 6 seconds NPC move left reset time		*/
@@ -61,7 +65,9 @@ void level_template(){
 			sleep(5);
                         } 
                 } else if (input 'q'){
-			end_art();
+			if(end_art() = 1){
+				return 1;
+			}
                 } else if (input 'p'){
 			pause_art();
 		//Checks player interaction
@@ -70,6 +76,10 @@ void level_template(){
 			if(mvinch(p1.y,p1.x+1) == '?' || mvinch(p1.y,p1.x-1) == '?' || mvinch(p1.y-1,p1.) == '?' || mvinch(p1.y+1,p1.x) == '?'){
 				//print npc_dialogue in ncurses
 			}
+			//Exit Reached.  Going to next level
+                        if(mvinch(p1.y,p1.x+1) == '#' || mvinch(p1.y,p1.x-1) == '#' || mvinch(p1.y-1,p1.) == '#' || mvinch(p1.y+1,p1.x) == '#'){
+                                return 0;
+                        }
                         if(mvinch(p1.y,p1.x+1) == '0'){
 				mvaddch(p1.y,p1.x+1,' ');
 				key_count-=1;
@@ -89,4 +99,18 @@ void level_template(){
                 refresh();
         }
 
+}
+
+void refresh_level(){
+	// Copy the level layout here
+
+	//Refresh the player and npc
+	drawPlayer(p1);
+	drawPlayer(NPC);
+	// Draws the uncollected keys
+	for(int i = 0; i <= key_location; i++){
+		if(key_location[i][0] != NULL && key_location[i][1] != NULL){
+			mvaddch(key_location[i][0],key_location[1],'0');
+		}
+	}
 }
