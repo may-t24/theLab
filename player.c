@@ -9,16 +9,16 @@
 #include <unistd.h>
 #include "player.h"
 
-Player createPlayer(int x, int y){
+Player createPlayer(char symbol,int x, int y){
 	Player p1;
 	p1.x = x;
 	p1.y = y;
-	p1.symbol = '@';
+	p1.symbol = symbol;
 	return p1;
 }
 
-void drawPlayer(){
-	mvaddch(p1.y,p1.s,p1.symbol);
+void drawPlayer(Player p1){
+	mvaddch(p1.y,p1.x,p1.symbol);
 	refresh();
 }
 

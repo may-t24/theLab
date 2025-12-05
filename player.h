@@ -24,7 +24,7 @@ typedef struct{
 * @param y is an integer representing the initial y of the player
 * @return the created player as type Player
 */
-Player createPlayer(int x, int y);
+Player createPlayer(char symbol,int x, int y);
 
 
 /**
