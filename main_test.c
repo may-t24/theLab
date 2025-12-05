@@ -28,16 +28,11 @@ int main(){
 		endwin();
 		return 1;
 	}
-	if (level1() == 1){
+	if (level_template() == 1){
 		getch();
 		endwin();
 		return 1;
 	} 
-	if (level2() == 1){
-                getch();
-                endwin();
-                return 1;
-        } 
 	end_art();
 	// Game is ended
 	getch();
