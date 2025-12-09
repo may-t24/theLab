@@ -5,9 +5,7 @@
 #include "player.h"
 #include "splash_art.h"
 #include "level_2.h"
-/*This is just a template of what a level*.c could look like.   Needs to be expanded more
-This is where you would add the maze layout and the objects.  Basically think about how the level would look like and translate it into here
-*/
+
 int level_2(){
 	int input;
  	//represents the object the player needs to collect.  change start_count in the header file depending on your key count
@@ -29,7 +27,7 @@ int level_2(){
 	int npc_timer= 0;
         p1 = createPlayer('@',2,27);
 	//draws the objects and level structure for the level
-        refresh_level(p1,NPC,key_location);
+        refresh_level2(p1,NPC,key_location);
 	//prearing to enter while loop
 	keypad(stdscr,TRUE);
 	input=getch();
@@ -63,11 +61,11 @@ int level_2(){
 			if(quit_art() == 1){
 				return 1;
 			}
-			refresh_level(p1,NPC,key_location);
+			refresh_level2(p1,NPC,key_location);
                 } else if (input == 'p'){
 			clear();
 			pause_art();
-			refresh_level(p1,NPC,key_location);
+			refresh_level2(p1,NPC,key_location);
 		//Checks player interaction
 		} else if (input == 'i'){
 			//NPC check can combine all the +1 checks into one statement since it does not need to modify the play field
@@ -133,7 +131,7 @@ int level_2(){
                 }
 		npc_timer+=1;
 		if (key_count == 0){
-			//REMINDER TO PUT YOUR DOOR COORDS HERE
+			//Door coords to get removed once keys are collected
 			mvaddch(1,70,' ');
 		        mvaddch(1,75,' ');
         		mvaddch(2,75,' ');
@@ -149,11 +147,11 @@ int level_2(){
         }
 
 }
-void refresh_level(Player p1, Player NPC,int key_location[start_count][2]){
-        // Draws Wall,Doors & Exit
-	draw_level();
+void refresh_level2(Player p1, Player NPC,int key_location[start_count][2]){
+        //Draws Wall,Doors & Exit
+	draw_level2();
 	//Draw UI
-	mvprintw(2,83,"LEVEL TEST");
+	mvprintw(2,83,"LEVEL 2");
         mvprintw(6,83,"Door is Closed");
         mvprintw(32,0,"Dialogue:");
         mvprintw(8,83,"CONTROLS:");
@@ -168,13 +166,12 @@ void refresh_level(Player p1, Player NPC,int key_location[start_count][2]){
         for(int i = 0; i < start_count; i++){
                 if(key_location[i][0] != 0 && key_location[i][1] != 0){
                         mvaddch(key_location[i][1],key_location[i][0],'0');
-                } 
+                }
         }
         refresh();
 }
-//PUT YOUR LEVEL DESIGN WALLS HERE
-//Game Objects should still be placed in the regular level function
-void draw_level(){
+//Level design walls
+void draw_level2(){
 	char wall = '|';
 	char door = '=';
 	char exit = '#';
@@ -190,10 +187,7 @@ void draw_level(){
                 mvprintw(0,i,"%c",wall);
 		mvprintw(30,i,"%c",wall);
         }
-	/*PUT YOUR LEVEL LAYOUT HERE. 
-	REMINDER THAT POSITIVE Y GOES DOWN
-        ALSO PUT THE DOOR LOCATIONS IN KEY_COUNT == 0 CHECK
-	*/
+	//Level layout
 	//Layout is row by row
 	mvprintw(1,70,"%c",door);
 	mvprintw(1,75,"%c",door);

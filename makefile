@@ -4,7 +4,7 @@ CC = gcc
 CFLAGS = -Wall -std=c11
 LDFLAGS = -lm -lc -lncurses -ltinfo
 APP = App
-$(APP): main.o player.o splash_art.o level1.o level2.o
+$(APP): main.o player.o splash_art.o level_1.o level_2.o
 	 $(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 %.o: %.c %.h
 	$(CC) $(CFLAGS) -c $<
